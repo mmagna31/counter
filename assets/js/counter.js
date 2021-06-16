@@ -1,56 +1,71 @@
 /* Layout Counter */
+const COUNTER_MIN = 0;
+const COUNTER_MAX = 10;
 
-let num = 0;
-let counterDiv = document.getElementById("counter");
+let counter = COUNTER_MIN;
+counter = COUNTER_MAX;
 
-let decrementBtn = document.createElement("button");
-decrementBtn.innerHTML = "-";
+// let counterDiv = document.getElementById("counterDiv");
+
+let increaseBtn = document.createElement("button");
+increaseBtn.innerHTML = "+";
+increaseBtn.setAttribute("data-action", "increase");
 
 let para = document.createElement("p");
-para.innerHTML = num;
+para.innerHTML = counter;
 
-let incrementBtn = document.createElement("button");
-incrementBtn.innerHTML = "+";
+let decreaseBtn = document.createElement("button");
+decreaseBtn.innerHTML = "-";
+decreaseBtn.setAttribute("data-action", "decrease");
 
-let note = document.createElement("p");
-note.innerHTML = "Contatore ha raggiunto il limite minimo";
-note.style.display = "none";
+let msg = document.createElement("p");
+msg.style.display = "none";
 
-counterDiv.append(decrementBtn, para, incrementBtn, note);
+/* took from html */
+counterDiv.append(increaseBtn, para, decreaseBtn, msg);
 
+counterDiv.addEventListener("click", manageCounter);
 
-decrementBtn.addEventListener("click", () => {
-  console.log("decrement: ", num);
-  if (+para.innerHTML == 0) {
-    note.style.display = "";
-    return;
+/*==================================================================================*/
+
+// function increaseCounter() {
+//   if (+para.innerHTML > 0 ) {
+//     msg.style.display = "none";
+//   }
+//   para.innerHTML = ++counter;
+// }
+
+// function decreaseCounter() {
+//   if (+para.innerHTML == 0) {
+//     msg.style.display = "";
+//     return;
+//   }
+//   para.innerHTML = --counter;
+// }
+
+/* Event delegation & behavior pattern in action  */
+function manageCounter(event) {
+  console.log(event.target, event.target.dataset.action);
+
+  if (event.target.dataset.action == "decrease") {
+    
+    if (counter <= COUNTER_MIN) {
+      msg.innerHTML = `Counter starts from ${COUNTER_MIN}. Please increase the counter.`;
+      msg.style.display = "block";
+      return false;
+    }
+    msg.style.display = "none";
+    para.innerHTML = --counter;
+    
+  } else if (event.target.dataset.action == "increase") {
+    
+    if (counter >= COUNTER_MAX) {
+      msg.innerHTML = `Maxium counter ${COUNTER_MIN} reached. Please decrease the counter.`;
+      msg.style.display = "block";
+      return false;
+    }
+    msg.style.display = "none";
+    para.innerHTML = ++counter;
+    
   }
-  para.innerHTML = --num;
-});
-
-incrementBtn.addEventListener("click", () => {
-  console.log("increment: ", num);
-  para.innerHTML = ++num;
-  if (+para.innerHTML > 0 ) {
-    note.style.display = "none"
-  }
-});
-
-function decrementNum(num) {
-  return --num;
 }
-
-function incrementNum() {
-  return ++num;
-}
-
-function setNum() {
-
-}
-
-function displayNum(num, element) {
-  let currentNum = +element.innerHTML;
-  element.innerHTML = num;
-
-}
-
