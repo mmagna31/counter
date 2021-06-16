@@ -23,29 +23,12 @@ msg.style.display = "none";
 
 /* took from html */
 counterDiv.append(increaseBtn, para, decreaseBtn, msg);
-
 counterDiv.addEventListener("click", manageCounter);
 
 /*==================================================================================*/
 
-// function increaseCounter() {
-//   if (+para.innerHTML > 0 ) {
-//     msg.style.display = "none";
-//   }
-//   para.innerHTML = ++counter;
-// }
-
-// function decreaseCounter() {
-//   if (+para.innerHTML == 0) {
-//     msg.style.display = "";
-//     return;
-//   }
-//   para.innerHTML = --counter;
-// }
-
 /* Event delegation & behavior pattern in action  */
 function manageCounter(event) {
-  console.log(event.target, event.target.dataset.action);
 
   if (event.target.dataset.action == "decrease") {
     
@@ -60,7 +43,7 @@ function manageCounter(event) {
   } else if (event.target.dataset.action == "increase") {
     
     if (counter >= COUNTER_MAX) {
-      msg.innerHTML = `Maxium counter ${COUNTER_MIN} reached. Please decrease the counter.`;
+      msg.innerHTML = `Maxium counter ${COUNTER_MAX} reached. Please decrease the counter.`;
       msg.style.display = "block";
       return false;
     }
@@ -68,4 +51,5 @@ function manageCounter(event) {
     para.innerHTML = ++counter;
     
   }
+
 }
