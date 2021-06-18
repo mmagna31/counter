@@ -1,58 +1,80 @@
-/* Layout Counter */
-const COUNTER_MIN = 0;
-const COUNTER_MAX = 10;
+function increaseCounter(num) {
+  return ++num;
+}
 
-let counter = COUNTER_MIN;
+function decreaseCounter(num) {
+  return --num;
+}
 
-let increaseBtn = document.createElement("button");
-increaseBtn.innerHTML = "+";
-increaseBtn.setAttribute("data-action", "increase");
-increaseBtn.style.height = "30px";
-increaseBtn.style.width = "30px";
+function isValidCounter(num, min, max) {
+  return num > min && num < max;
+}
 
-let div = document.createElement("div");
-div.innerHTML = counter;
+function getCounterHTML(elem) {
+  return elem.innerHTML;
+}
 
-let decreaseBtn = document.createElement("button");
-decreaseBtn.innerHTML = "-";
-decreaseBtn.setAttribute("data-action", "decrease");
-decreaseBtn.style.height = "30px";
-decreaseBtn.style.width = "30px";
+function setCounterHTML(elem, num) {
+  elem.innerHTML = num;
+}
 
-let msg = document.createElement("p");
-msg.style.display = "none";
+function createBtn(text, action, styleObj) {
+  let btn = document.createElement("button");
+  btn.innerHTML = text;
+  btn.setAttribute("data-action", action);
+  btn.style.height = styleObj.height;
+  btn.style.width = styleObj.width;
+  return btn;
+}
 
-/* took from html */
-counterDiv.append(increaseBtn, div, decreaseBtn, msg);
-counterDiv.addEventListener("click", manageCounter);
+function createParagraph(text) {
+  let para = document.createElement("p");
+  para.innerHTML = text;
+  return para;
+}
 
-
-
-/*==================================================================================*/
-
-/* Event delegation & behavior pattern in action  */
 function manageCounter(event) {
 
-  if (event.target.dataset.action == "decrease") {
-    
-    if (counter <= COUNTER_MIN) {
-      msg.innerHTML = `Counter starts from ${COUNTER_MIN}. Please increase the counter.`;
-      msg.style.display = "";
-      return false;
-    }
-    msg.style.display = "none";
-    div.innerHTML = --counter;
-    
-  } else if (event.target.dataset.action == "increase") {
-    
-    if (counter >= COUNTER_MAX) {
-      msg.innerHTML = `Maxium counter ${COUNTER_MAX} reached. Please decrease the counter.`;
-      msg.style.display = "";
-      return false;
-    }
-    msg.style.display = "none";
-    div.innerHTML = ++counter;
-    
+  let action = event.target.dataset.action;
+  
+  switch(action) {
+
+    case "decrease":
+      let counter = getCounterHTML()
+      increaseCounter()
+      break;
+    case "increase":
+      break;
+
   }
 
 }
+
+/* Define layout */
+
+const COUNTER_MIN = 0;
+const COUNTER_MAX = 10;
+
+let counterPara = createParagraph(COUNTER_MIN);
+let increaseBtn = createBtn("+", "increase", {height: "30px", width: "30px"});
+let decreaseBtn = createBtn("-", "decrease", {height: "30px", width: "30px"});
+
+/* took from html */
+counterDiv.append(counterPara, decreaseBtn, increaseBtn);
+counterDiv.addEventListener("click", (event) => {
+
+  let action = event.target.dataset.action;
+  
+  switch(action) {
+
+    case "decrease":
+      console.log(action);
+      break;
+      case "increase":
+      console.log(action);
+      break;
+
+  }
+
+});
+
