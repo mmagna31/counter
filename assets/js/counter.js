@@ -11,7 +11,7 @@ function decreaseCounter(num) {
 }
 
 function isValidCounter(num, min, max) {
-  return num > min && num < max;
+  return num >= min && num <= max;
 }
 
 function getCounterHTML(elem) {
@@ -54,23 +54,19 @@ counterDiv.addEventListener("click", (event) => {
   let counterHTML = getCounterHTML(counterPara);
   
   switch(action) {
-
     case "decrease":
-      console.log(action);
-
+      counterHTML = decreaseCounter(counterHTML);
       break;
-      case "increase":
-      console.log(action);
-
+    case "increase":
       counterHTML = increaseCounter(counterHTML);
       break;
-
   }
 
   if (isValidCounter(counterHTML, COUNTER_MIN, COUNTER_MAX)) {
     setCounterHTML(counterPara, counterHTML);
   } else {
-    return false;
+    /* stampa messaggio */
+     return false;
   }
 
 });
