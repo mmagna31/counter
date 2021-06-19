@@ -2,6 +2,10 @@ function increaseCounter(num) {
   return ++num;
 }
 
+function increaseCounterHTML(elem, num) {
+  return increaseCounter(getCounterHTML(elem));
+}
+
 function decreaseCounter(num) {
   return --num;
 }
@@ -33,23 +37,6 @@ function createParagraph(text) {
   return para;
 }
 
-function manageCounter(event) {
-
-  let action = event.target.dataset.action;
-  
-  switch(action) {
-
-    case "decrease":
-      let counter = getCounterHTML()
-      increaseCounter()
-      break;
-    case "increase":
-      break;
-
-  }
-
-}
-
 /* Define layout */
 
 const COUNTER_MIN = 0;
@@ -64,16 +51,26 @@ counterDiv.append(counterPara, decreaseBtn, increaseBtn);
 counterDiv.addEventListener("click", (event) => {
 
   let action = event.target.dataset.action;
+  let counterHTML = getCounterHTML(counterPara);
   
   switch(action) {
 
     case "decrease":
       console.log(action);
+
       break;
       case "increase":
       console.log(action);
+
+      counterHTML = increaseCounter(counterHTML);
       break;
 
+  }
+
+  if (isValidCounter(counterHTML, COUNTER_MIN, COUNTER_MAX)) {
+    setCounterHTML(counterPara, counterHTML);
+  } else {
+    return false;
   }
 
 });
