@@ -1,58 +1,91 @@
-/* Layout Counter */
+function increaseCounter(num) {
+  return ++num;
+}
+
+function increaseCounterHTML(elem, num) {
+  return increaseCounter(getCounterHTML(elem));
+}
+
+function decreaseCounter(num) {
+  return --num;
+}
+
+function isValidCounter(num, min, max) {
+  return num >= min && num <= max;
+}
+
+function getCounterHTML(elem) {
+  return elem.innerHTML;
+}
+
+function setCounterHTML(elem, num) {
+  elem.innerHTML = num;
+}
+
+function createBtn(text, action, styleObj) {
+  let btn = document.createElement("button");
+  btn.innerHTML = text;
+  btn.setAttribute("data-action", action);
+  btn.style.height = styleObj.height;
+  btn.style.width = styleObj.width;
+  return btn;
+}
+
+function createParagraph(text) {
+  let para = document.createElement("p");
+  para.innerHTML = text;
+  return para;
+}
+
+
+function defineMessage(num, min, max) {
+  let message;
+  if (num < min) {
+    message = `Counter can't be less than ${COUNTER_MIN}. Please increase counter.`;
+  } else if (num > max) {
+    message = `Counter can't be greater than ${COUNTER_MAX}. Please decrease counter.`;
+  } else {
+    message = `Counter ${counterHTML} is not a valid number`;
+  }
+  return message;
+}
+
+/* Define layout */
+
 const COUNTER_MIN = 0;
 const COUNTER_MAX = 10;
 
-let counter = COUNTER_MIN;
-
-let increaseBtn = document.createElement("button");
-increaseBtn.innerHTML = "+";
-increaseBtn.setAttribute("data-action", "increase");
-increaseBtn.style.height = "30px";
-increaseBtn.style.width = "30px";
-
-let div = document.createElement("div");
-div.innerHTML = counter;
-
-let decreaseBtn = document.createElement("button");
-decreaseBtn.innerHTML = "-";
-decreaseBtn.setAttribute("data-action", "decrease");
-decreaseBtn.style.height = "30px";
-decreaseBtn.style.width = "30px";
-
-let msg = document.createElement("p");
-msg.style.display = "none";
+let counterPara = createParagraph(COUNTER_MIN);
+let increaseBtn = createBtn("+", "increase", {height: "30px", width: "30px"});
+let decreaseBtn = createBtn("-", "decrease", {height: "30px", width: "30px"});
+let counterMessage = createParagraph("");
+counterMessage.hidden = true;
 
 /* took from html */
-counterDiv.append(increaseBtn, div, decreaseBtn, msg);
-counterDiv.addEventListener("click", manageCounter);
+counterDiv.append(counterPara, decreaseBtn, increaseBtn, counterMessage);
+counterDiv.addEventListener("click", (event) => {
 
-
-
-/*==================================================================================*/
-
-/* Event delegation & behavior pattern in action  */
-function manageCounter(event) {
-
-  if (event.target.dataset.action == "decrease") {
-    
-    if (counter <= COUNTER_MIN) {
-      msg.innerHTML = `Counter starts from ${COUNTER_MIN}. Please increase the counter.`;
-      msg.style.display = "";
-      return false;
-    }
-    msg.style.display = "none";
-    div.innerHTML = --counter;
-    
-  } else if (event.target.dataset.action == "increase") {
-    
-    if (counter >= COUNTER_MAX) {
-      msg.innerHTML = `Maxium counter ${COUNTER_MAX} reached. Please decrease the counter.`;
-      msg.style.display = "";
-      return false;
-    }
-    msg.style.display = "none";
-    div.innerHTML = ++counter;
-    
+  let action = event.target.dataset.action;
+  let counterHTML = getCounterHTML(counterPara);
+  
+  switch(action) {
+    case "decrease":
+      counterHTML = decreaseCounter(counterHTML);
+      break;
+    case "increase":
+      counterHTML = increaseCounter(counterHTML);
+      break;
   }
 
-}
+  if (isValidCounter(counterHTML, COUNTER_MIN, COUNTER_MAX)) {
+    if (!counterMessage.hidden) {
+      counterMessage.hidden = true;
+    }
+    setCounterHTML(counterPara, counterHTML);
+  } else {
+    counterMessage.innerHTML = defineMessage(counterHTML, COUNTER_MIN, COUNTER_MAX);
+    counterMessage.hidden = false;
+  }
+
+});
+
