@@ -2,10 +2,6 @@ function increaseCounter(num) {
   return ++num;
 }
 
-function increaseCounterHTML(elem, num) {
-  return increaseCounter(getCounterHTML(elem));
-}
-
 function decreaseCounter(num) {
   return --num;
 }
@@ -22,21 +18,20 @@ function setCounterHTML(elem, num) {
   elem.innerHTML = num;
 }
 
-function createBtn(text, action, styleObj) {
+function createBtn(text, action, {width, height} = {}) {
   let btn = document.createElement("button");
   btn.innerHTML = text;
   btn.setAttribute("data-action", action);
-  btn.style.height = styleObj.height;
-  btn.style.width = styleObj.width;
+  btn.style.height = height;
+  btn.style.width = width;
   return btn;
 }
 
-function createParagraph(text) {
+function createParagraph(text = "") {
   let para = document.createElement("p");
   para.innerHTML = text;
   return para;
 }
-
 
 function defineMessage(num, min, max) {
   let message;
@@ -56,14 +51,30 @@ const COUNTER_MIN = 0;
 const COUNTER_MAX = 10;
 
 let counterPara = createParagraph(COUNTER_MIN);
-let increaseBtn = createBtn("+", "increase", {height: "30px", width: "30px"});
-let decreaseBtn = createBtn("-", "decrease", {height: "30px", width: "30px"});
-let counterMessage = createParagraph("");
+let decreaseBtn = createBtn("-", "decrease", {height: "30px", width: "50px"});
+let increaseBtn = createBtn("+", "increase", {height: "30px", width: "50px"});
+let containerBtn = document.createElement('div');
+let title = createParagraph("Counter");
+title.style.display = "inline";
+title.style.marginLeft = "30px";
+title.style.marginRight = "30px";
+
+
+containerBtn.append(decreaseBtn, title, increaseBtn);
+containerBtn.style.marginTop = "30px";
+containerBtn.style.marginBottom = "30px";
+
+
+let counterMessage = createParagraph();
 counterMessage.hidden = true;
+counterMessage.style.fontSize = "20px";
+counterMessage.style.marginTop = "20px";
+
+counterDiv.append(containerBtn, counterPara, counterMessage);
 
 /* took from html */
-counterDiv.append(counterPara, decreaseBtn, increaseBtn, counterMessage);
-counterDiv.addEventListener("click", (event) => {
+
+containerBtn.addEventListener("click", (event) => {
 
   let action = event.target.dataset.action;
   let counterHTML = getCounterHTML(counterPara);
@@ -75,6 +86,8 @@ counterDiv.addEventListener("click", (event) => {
     case "increase":
       counterHTML = increaseCounter(counterHTML);
       break;
+    default:
+      return false;
   }
 
   if (isValidCounter(counterHTML, COUNTER_MIN, COUNTER_MAX)) {
