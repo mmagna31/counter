@@ -36,29 +36,31 @@ function createParagraph(text = "") {
 function defineMessage(num, min, max) {
   let message;
   if (num < min) {
-    message = `Counter can't be less than ${COUNTER_MIN}. Please increase counter.`;
+    message = `Counter can't be less than ${min}. Please increase counter.`;
   } else if (num > max) {
-    message = `Counter can't be greater than ${COUNTER_MAX}. Please decrease counter.`;
+    message = `Counter can't be greater than ${max}. Please decrease counter.`;
   } else {
-    message = `Counter ${counterHTML} is not a valid number`;
+    message = `Counter ${num} is not a valid number`;
   }
   return message;
 }
 
-/* Define layout */
+/* Define layout for counterDiv */
 
 const COUNTER_MIN = 0;
 const COUNTER_MAX = 10;
 
 let counterPara = createParagraph(COUNTER_MIN);
+
 let decreaseBtn = createBtn("-", "decrease", {height: "30px", width: "50px"});
 let increaseBtn = createBtn("+", "increase", {height: "30px", width: "50px"});
+
 let containerBtn = document.createElement('div');
+
 let title = createParagraph("Counter");
 title.style.display = "inline";
 title.style.marginLeft = "30px";
 title.style.marginRight = "30px";
-
 
 containerBtn.append(decreaseBtn, title, increaseBtn);
 containerBtn.style.marginTop = "30px";
