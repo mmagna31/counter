@@ -70,9 +70,6 @@ counterMessage.hidden = true;
 counterMessage.style.fontSize = "20px";
 counterMessage.style.marginTop = "20px";
 
-counterDiv.append(containerBtn, counterPara, counterMessage);
-
-/* took from html */
 
 containerBtn.addEventListener("click", (event) => {
 
@@ -102,3 +99,4 @@ containerBtn.addEventListener("click", (event) => {
 
 });
 
+counterDiv.append(containerBtn, counterPara, counterMessage);
