@@ -1,5 +1,8 @@
 function increaseCounter(num) {
-  return ++num;
+  console.log("increaseCounter", num);
+  ++num;
+  console.log("increaseCounter", num);
+  return num;
 }
 
 function decreaseCounter(num) {
@@ -18,12 +21,10 @@ function setCounterHTML(elem, num) {
   elem.innerHTML = num;
 }
 
-function createBtn(text, action, {width, height} = {}) {
+function createBtn(text, action) {
   let btn = document.createElement("button");
   btn.innerHTML = text;
   btn.setAttribute("data-action", action);
-  btn.style.height = height;
-  btn.style.width = width;
   return btn;
 }
 
@@ -53,33 +54,35 @@ function defineMessage(num, min, max) {
   return message;
 }
 
+function defineStyleElem(elem, styleObj) {
+  for (let [key, value] of Object.entries(styleObj)) {
+    elem.style[key] = value;
+  }
+}
+
 /* Define layout for counterDiv */
 
 const COUNTER_MIN = 0;
-const COUNTER_MAX = 10;
+const COUNTER_MAX = "bb";
 
 let counterPara = createParagraph(COUNTER_MIN);
 
-let decreaseBtn = createBtn("-", "decrease", {height: "30px", width: "50px"});
-let increaseBtn = createBtn("+", "increase", {height: "30px", width: "50px"});
+let decreaseBtn = createBtn("-", "decrease");
+defineStyleElem(decreaseBtn, {height: "30px", width: "50px"});
+
+let increaseBtn = createBtn("+", "increase");
+defineStyleElem(increaseBtn, {height: "30px", width: "50px"});
 
 let containerBtn = document.createElement('div');
 
-let title = createParagraph("Counter", {display: "inline", marginLeft: "30px", marginRight: "30px"});
-// title.style.display = "inline";
-// title.style.marginLeft = "30px";
-// title.style.marginRight = "30px";
+let title = createParagraph("Counter");
+defineStyleElem(title, {display: "inline", marginLeft: "30px", marginRight: "30px"});
 
 containerBtn.append(decreaseBtn, title, increaseBtn);
-containerBtn.style.marginTop = "30px";
-containerBtn.style.marginBottom = "30px";
+defineStyleElem(containerBtn, {marginTop: "30px", marginBottom: "30px"});
 
-
-let counterMessage = createParagraph("", {display: "none", fontSize:"20px", marginTop: "20px" });
-// counterMessage.hidden = true;
-// counterMessage.style.fontSize = "20px";
-// counterMessage.style.marginTop = "20px";
-
+let counterMessage = createParagraph();
+defineStyleElem(counterMessage, {display: "none", fontSize: "20px", marginTop: "20px"});
 
 containerBtn.addEventListener("click", (event) => {
 
@@ -98,13 +101,11 @@ containerBtn.addEventListener("click", (event) => {
   }
 
   if (isValidCounter(counterHTML, COUNTER_MIN, COUNTER_MAX)) {
-    if (!counterMessage.hidden) {
-      counterMessage.hidden = true;
-    }
     setCounterHTML(counterPara, counterHTML);
+    defineStyleElem(counterMessage, {display: "none"});
   } else {
     counterMessage.innerHTML = defineMessage(counterHTML, COUNTER_MIN, COUNTER_MAX);
-    counterMessage.hidden = false;
+    defineStyleElem(counterMessage, {display: ""});
   }
 
 });
