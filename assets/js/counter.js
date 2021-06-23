@@ -27,9 +27,17 @@ function createBtn(text, action, {width, height} = {}) {
   return btn;
 }
 
-function createParagraph(text = "") {
+// function createParagraph(text = "") {
+//   let para = document.createElement("p");
+//   para.innerHTML = text;
+//   return para;
+// }
+function createParagraph(text = "", styleObj = {}) {
   let para = document.createElement("p");
   para.innerHTML = text;
+  /* define style for para */
+  Object.entries(styleObj).map(([key, value]) => para.style[key] = value);
+
   return para;
 }
 
@@ -57,20 +65,20 @@ let increaseBtn = createBtn("+", "increase", {height: "30px", width: "50px"});
 
 let containerBtn = document.createElement('div');
 
-let title = createParagraph("Counter");
-title.style.display = "inline";
-title.style.marginLeft = "30px";
-title.style.marginRight = "30px";
+let title = createParagraph("Counter", {display: "inline", marginLeft: "30px", marginRight: "30px"});
+// title.style.display = "inline";
+// title.style.marginLeft = "30px";
+// title.style.marginRight = "30px";
 
 containerBtn.append(decreaseBtn, title, increaseBtn);
 containerBtn.style.marginTop = "30px";
 containerBtn.style.marginBottom = "30px";
 
 
-let counterMessage = createParagraph();
-counterMessage.hidden = true;
-counterMessage.style.fontSize = "20px";
-counterMessage.style.marginTop = "20px";
+let counterMessage = createParagraph("", {display: "none", fontSize:"20px", marginTop: "20px" });
+// counterMessage.hidden = true;
+// counterMessage.style.fontSize = "20px";
+// counterMessage.style.marginTop = "20px";
 
 
 containerBtn.addEventListener("click", (event) => {
