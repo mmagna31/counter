@@ -31,7 +31,8 @@ function createParagraph(text = "") {
   return para;
 }
 
-function defineMessage(num, min, max) {
+function defineMessageUser(num, min, max) {
+  /* TO DO: improve or redefine function */
   let message;
 
   if (isNaN(num) || isNaN(min) || isNaN(max)) {
@@ -46,7 +47,9 @@ function defineMessage(num, min, max) {
   return message;
 }
 
+
 function defineStyleElem(elem, styleObj) {
+  /* It takes an object with the dom style properties and assigns them to the element */
   for (let [key, value] of Object.entries(styleObj)) {
     elem.style[key] = value;
   }

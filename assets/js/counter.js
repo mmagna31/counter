@@ -57,7 +57,7 @@ containerBtn.addEventListener("click", (event) => {
 
   } else {
 
-    counterMessage.innerHTML = defineMessage(counterHTML, COUNTER_MIN, COUNTER_MAX);
+    counterMessage.innerHTML = defineMessageUser(counterHTML, COUNTER_MIN, COUNTER_MAX);
     defineStyleElem(counterMessage, {display: ""});
 
   }
