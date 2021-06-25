@@ -49,7 +49,10 @@ function defineMessageUser(num, min, max) {
 
 
 function defineStyleElem(elem, styleObj) {
-  /* It takes an object with the dom style properties and assigns them to the element */
+  /*
+    It takes an object with the dom style properties and 
+    assigns them to the element.
+  */
   for (let [key, value] of Object.entries(styleObj)) {
     elem.style[key] = value;
   }
