@@ -28,37 +28,18 @@ function defineStyleElem(elem, styleObj = {}) {
 function defineLayout(counter) {
   /* return a div with the defined layout */
 
-  /* Objects to style the elements */
-  let btnStyle = {
-    paddingLeft: "10px",
-    paddingRight: "10px",
-    minWidth: "50px",
-    minHeight: "30px",
-    backgroundColor: "white",
-    borderRadius: "10px", 
-    border: "2px solid black",
-    cursor: "pointer",
-  };
-
-  let h1Style = {
-    display: "inline",
-    paddingLeft: "20px",
-    paddingRight: "20px",
-  }
-
   let counterLayout = document.createElement("div");
-
+  
   if (isValidCounter(counter)) {
     
-    let title = document.createElement("h1");
+    let counterBox = document.createElement("div");
+
+    let title = document.createElement("p");
     title.innerHTML = "Counter";
-    defineStyleElem(title, h1Style);
 
     let increaseBtn = createCustomBtn("+", "increase");
-    defineStyleElem(increaseBtn, btnStyle);
     
     let decreaseBtn = createCustomBtn("-", "decrease");
-    defineStyleElem(decreaseBtn, btnStyle);
     
     let containerBtn = document.createElement("div");
     containerBtn.append(decreaseBtn, title, increaseBtn);

@@ -6,22 +6,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Counter</title>
   <link href="assets/css/style.css" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&display=swap" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;500;700&display=swap" rel="stylesheet">
+  
 </head>
 <body>
   <header>
     <p>Welcome to my counter!<br>
-      Use +/- button to increase/decrease the counter.</p>
+      Use +/- buttons to increase/decrease the counter.</p>
   </header>
   <main>
-    <img src="assets/img/numbers.png" alt="numbers">
-    <div id="counterDiv"/>
+    <div class="counter-box">
+      <p class="message">Counter error. Lorem ipsum </p>
+      <p class="counter-display">0123456789</p>
+      <div class="counter-btn">
+        <button type="button" class="btn">-</button>
+        <button type="button" class="btn btn-large">+</button>
+        <button type="button" class="btn">C</button>
+      </div>
+
+    </div>
   </main>
   <footer>
     <p>mmagna31 2021</p>
   </footer>
-  <script src="assets/js/utility.js"></script>
-  <script src="assets/js/counter.js"></script>
+  <!-- <script src="assets/js/counter.js"></script> -->
 </body>
 </html>
