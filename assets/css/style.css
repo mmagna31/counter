@@ -6,13 +6,13 @@
 
 body {
     font-family: 'Raleway', sans-serif;
-    background-color: teal;
+    background-color: #0097a7;
     text-align: center;
 }
 
 header, footer {
-    background-color: black;
-    color: white;
+    background-color: #007c91;
+    /* color: white; */
     width: 100%;
     padding: 5px;
 }
@@ -22,43 +22,67 @@ footer {
     bottom: 0;
 }
 
-/* @media screen and (min-width: 768px) {
-    img {
-        width: 20%;
-    }
+/* .counter-box {
+    margin-top: 10%;
 } */
 
-.counter-box {
-    margin-top: 10%;
+.counter-display {
+    /* background-color: #E1E2E1; */
+    padding: 30px;
 }
 
 .message {
     font-size: 1.5rem;
-    margin: 10px;
 }
 
-.counter-display {
+.counter-num {
     font-size: 3rem;
+    word-break: break-all;
+    padding-top: 20px;
+    padding-bottom: 50px;
 }
 
 .btn {
     font-weight: 200;
     font-family: 'Raleway', sans-serif;
-    /* border-radius:  25% 10%; */
-    border-radius:  25%;
-    border: 1px solid black;
-    background-color: transparent;
+    background-color: #ffeb3b;
+    border-radius:  20%;
+    border: none;
     cursor: pointer;
-    margin: 10px;
-    font-size: 50px;
-    width: 70px;
-    height: 70px;
+    margin: 5px;
+    font-size: 30px;
+    width: 50px;
+    height: 50px;
     text-align: center;
 }
 
+/* .counter-btn {
+    margin-top: -50px;
+} */
 
-.btn-large {
-    width: 120px;
-    height: 120px;
-    border-radius: 25%;
+.btn-md {
+    border-radius: 20%;
+    width: 80px;
+    height: 80px;
+}
+
+.btn-sx {
+    border-radius: 5% 20%;
+}
+
+.btn-dx {
+    border-radius: 20% 5%;
+}
+
+@media screen and (max-width: 300px) {
+    .counter-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .btn-sx, .btn-dx {
+        border-radius: 20%;
+    }
 }
