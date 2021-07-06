@@ -5,7 +5,8 @@
   "main": "counter.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-	"scss": "sass --watch assets/scss/style.scss -o assets/css/style.css”
+    "scss": "node-sass --watch assets/scss -o assets/css",
+    "autoprefixer": "postcss assets/css/*.css --use autoprefixer -d assets/css/"
   },
   "repository": {
     "type": "git",
@@ -16,5 +17,10 @@
   "bugs": {
     "url": "https://github.com/mmagna31/counter/issues"
   },
-  "homepage": "https://github.com/mmagna31/counter#readme"
+  "homepage": "https://github.com/mmagna31/counter#readme",
+  "devDependencies": {
+    "autoprefixer": "^10.2.6",
+    "postcss": "^8.3.5",
+    "postcss-cli": "^8.3.1"
+  }
 }
