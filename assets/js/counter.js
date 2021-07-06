@@ -1,91 +1,93 @@
-function increaseCounter(num) {
-  return ++num;
+/* Utility functions */
+
+function isValidCounter(counter) {
+  /* Check if counter is a valid number */
+  return !isNaN(counter) && isFinite(counter) && counter != null;
 }
 
-function increaseCounterHTML(elem, num) {
-  return increaseCounter(getCounterHTML(elem));
-}
+/* End Utility functions */
 
-function decreaseCounter(num) {
-  return --num;
-}
+/* Layout functions */
 
-function isValidCounter(num, min, max) {
-  return num >= min && num <= max;
-}
-
-function getCounterHTML(elem) {
-  return elem.innerHTML;
-}
-
-function setCounterHTML(elem, num) {
-  elem.innerHTML = num;
-}
-
-function createBtn(text, action, styleObj) {
+function createCustomBtn(text = "", action = "") {
+  /* It creates a button with text provided and value for custom attribute */
   let btn = document.createElement("button");
   btn.innerHTML = text;
   btn.setAttribute("data-action", action);
-  btn.style.height = styleObj.height;
-  btn.style.width = styleObj.width;
   return btn;
 }
 
-function createParagraph(text) {
-  let para = document.createElement("p");
-  para.innerHTML = text;
-  return para;
-}
-
-
-function defineMessage(num, min, max) {
-  let message;
-  if (num < min) {
-    message = `Counter can't be less than ${COUNTER_MIN}. Please increase counter.`;
-  } else if (num > max) {
-    message = `Counter can't be greater than ${COUNTER_MAX}. Please decrease counter.`;
-  } else {
-    message = `Counter ${counterHTML} is not a valid number`;
+function defineStyleElem(elem, styleObj = {}) {
+  /* It takes an object with the dom style properties and 
+     assigns them to the element */
+  for (let [key, value] of Object.entries(styleObj)) {
+    elem.style[key] = value;
   }
-  return message;
 }
 
-/* Define layout */
+function defineLayout(num) {
+  /* return a div with the defined layout */
 
-const COUNTER_MIN = 0;
-const COUNTER_MAX = 10;
+  let counter = num;
 
-let counterPara = createParagraph(COUNTER_MIN);
-let increaseBtn = createBtn("+", "increase", {height: "30px", width: "30px"});
-let decreaseBtn = createBtn("-", "decrease", {height: "30px", width: "30px"});
-let counterMessage = createParagraph("");
-counterMessage.hidden = true;
-
-/* took from html */
-counterDiv.append(counterPara, decreaseBtn, increaseBtn, counterMessage);
-counterDiv.addEventListener("click", (event) => {
-
-  let action = event.target.dataset.action;
-  let counterHTML = getCounterHTML(counterPara);
+  let counterLayout = document.createElement("div");
   
-  switch(action) {
-    case "decrease":
-      counterHTML = decreaseCounter(counterHTML);
-      break;
-    case "increase":
-      counterHTML = increaseCounter(counterHTML);
-      break;
-  }
+  if (isValidCounter(counter)) {
+    
+    let counterBox = document.createElement("div");
 
-  if (isValidCounter(counterHTML, COUNTER_MIN, COUNTER_MAX)) {
-    if (!counterMessage.hidden) {
-      counterMessage.hidden = true;
-    }
-    setCounterHTML(counterPara, counterHTML);
+    let title = document.createElement("p");
+    title.innerHTML = "Counter";
+
+    let increaseBtn = createCustomBtn("+", "increase");
+    
+    let decreaseBtn = createCustomBtn("-", "decrease");
+
+    let resetBtn = createCustomBtn("-", "reset");
+    
+    let containerBtn = document.createElement("div");
+    containerBtn.append(decreaseBtn, increaseBtn, resetBtn);
+    
+    let counterPara = document.createElement("p");
+    counterPara.innerHTML = +counter;
+    
+    /* Event Listener with event delegation and behaviour pattern in action */
+    containerBtn.addEventListener("click", (event) => {
+      let action = event.target.dataset.action;
+
+      switch(action) {
+        case "decrease":
+          --counter;
+          break;
+        case "increase":
+          ++counter;
+          break;
+        case "reset":
+          counter = num;
+          break;
+      }
+
+      if (isValidCounter(counter)) {
+        counterPara.innerHTML = counter;
+      } else {
+        return false;
+      }
+
+    });
+  
+    counterLayout.append(containerBtn, counterPara);
+  
   } else {
-    counterMessage.innerHTML = defineMessage(counterHTML, COUNTER_MIN, COUNTER_MAX);
-    counterMessage.hidden = false;
+    let counterError = document.createElement("p");
+    counterError.innerHTML = `Unable to define layout for counter  "${counter}". It is not a valid number.`;
+    counterLayout.append(counterError);
   }
 
-});
+  return counterLayout;
 
+}
+
+/* End Layout function */
+
+let counter = 0;
+counterDiv.append(defineLayout(counter));

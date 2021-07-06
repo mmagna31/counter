@@ -1,0 +1,27 @@
+{
+  "name": "counter",
+  "version": "1.0.0",
+  "description": "It's a simple counter implemented in javascript",
+  "main": "counter.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "scss": "node-sass --watch assets/scss -o assets/css",
+    "autoprefixer": "postcss assets/css/*.css --use autoprefixer -d assets/css/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mmagna31/counter.git"
+  },
+  "author": "mmagna31",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mmagna31/counter/issues"
+  },
+  "homepage": "https://github.com/mmagna31/counter#readme",
+  "devDependencies": {
+    "autoprefixer": "^10.2.6",
+    "node-sass": "^6.0.1",
+    "postcss": "^8.3.5",
+    "postcss-cli": "^8.3.1"
+  }
+}

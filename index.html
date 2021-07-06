@@ -5,13 +5,37 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Counter</title>
-  <link href="assets/css/style.css" rel="stylesheet"> 
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- Font Awesome CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"  crossorigin="anonymous">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
+  <header>
+    <p>Welcome to my counter!<br>
+      Use &plus;/&minus; buttons to increase/decrease the counter.</p>
+  </header>
   <main>
-    <!-- <img src="assets/img/number.jpg" alt="number"> -->
-    <div id="counterDiv" />
+    <div class="counter-box">
+      <div class="counter-display">
+        <p class="counter-num">0</p>
+        <p class="message">Counter error. Lorem ipsum </p>
+      </div>
+      <div class="counter-btn">
+        <button type="button" class="btn"><i class="fas fa-minus"></i></button>
+        <button type="button" class="btn"><i class="fas fa-plus"></i></button>
+        <button type="button" class="btn"><i class="fas fa-undo"></i></button>
+      </div>
+    </div>
   </main>
-  <script src="assets/js/counter.js"></script>
+  <footer>
+    <p>mmagna31 2021</p>
+  </footer>
+  <!-- <script src="assets/js/counter.js"></script> -->
 </body>
 </html>
