@@ -25,8 +25,10 @@ function defineStyleElem(elem, styleObj = {}) {
   }
 }
 
-function defineLayout(counter) {
+function defineLayout(num) {
   /* return a div with the defined layout */
+
+  let counter = num;
 
   let counterLayout = document.createElement("div");
   
@@ -40,9 +42,11 @@ function defineLayout(counter) {
     let increaseBtn = createCustomBtn("+", "increase");
     
     let decreaseBtn = createCustomBtn("-", "decrease");
+
+    let resetBtn = createCustomBtn("-", "reset");
     
     let containerBtn = document.createElement("div");
-    containerBtn.append(decreaseBtn, title, increaseBtn);
+    containerBtn.append(decreaseBtn, increaseBtn, resetBtn);
     
     let counterPara = document.createElement("p");
     counterPara.innerHTML = +counter;
@@ -57,6 +61,9 @@ function defineLayout(counter) {
           break;
         case "increase":
           ++counter;
+          break;
+        case "reset":
+          counter = num;
           break;
       }
 
