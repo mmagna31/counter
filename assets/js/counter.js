@@ -90,4 +90,4 @@ function defineLayout(num) {
 /* End Layout function */
 
 let counter = 0;
-counterDiv.append(defineLayout(counter));
+counterBox.append(defineLayout(counter));
