@@ -4,7 +4,7 @@
   box-sizing: border-box; }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   background-color: #18998B;
   text-align: center;
   color: #FFFD82; }
@@ -26,10 +26,10 @@ footer {
   text-shadow: 5px 10px 20px #2D3047; }
 
 .message {
-  font-size: 1.5rem; }
+  font-size: 3vw; }
 
 .counter-num {
-  font-size: 7rem;
+  font-size: 7vw;
   word-break: break-all;
   padding-top: 20px; }
 
@@ -45,11 +45,13 @@ footer {
   background-color: transparent;
   line-height: 1.2;
   text-align: center;
-  box-shadow: 5px 10px 20px #2D3047;
-  /* TO DO: resolve active for mobile*/ }
+  box-shadow: 5px 10px 20px #2D3047; }
   @media (hover: hover) {
     .btn:hover {
       opacity: 0.5; } }
+  .btn:active {
+    transform: scale(0.9);
+    transition: 0.1s; }
 
 @media screen and (max-width: 300px) {
   .counter-btn {

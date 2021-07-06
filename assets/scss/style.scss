@@ -1,6 +1,8 @@
 $primary-color: #18998B;
 $secondary-color: #2D3047;
 $text-color: #FFFD82;
+$shadow: 5px 10px 20px $secondary-color;
+$font-family: 'Roboto', sans-serif;
 
 
 * {
@@ -10,7 +12,7 @@ $text-color: #FFFD82;
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: $font-family;
     background-color: $primary-color;
     text-align: center;
     color: $text-color;
@@ -33,15 +35,15 @@ footer {
 
 .counter-display {
     padding: 30px;
-    text-shadow: 5px 10px 20px $secondary-color;
+    text-shadow: $shadow;
 }
 
 .message {
-    font-size: 1.5rem;
+    font-size: 3vw;
 }
 
 .counter-num {
-    font-size: 7rem;
+    font-size: 7vw;
     word-break: break-all;
     padding-top: 20px;
 }
@@ -58,15 +60,18 @@ footer {
     background-color: transparent;
     line-height: 1.2;
     text-align: center;
-    box-shadow: 5px 10px 20px $secondary-color;
+    box-shadow: $shadow;
 
     @media (hover: hover) {
         &:hover {
             opacity: 0.5;
         }
     }
-
-    /* TO DO: resolve active for mobile*/
+    
+    &:active {
+        transform: scale(0.9);
+        transition: 0.1s;
+    }
 
 }
 
