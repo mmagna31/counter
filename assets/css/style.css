@@ -11,7 +11,6 @@ body {
 
 header, footer {
   background-color: #2D3047;
-  /* color: white; */
   width: 100%;
   padding: 5px; }
 
@@ -23,7 +22,6 @@ footer {
     margin-top: 10%;
 } */
 .counter-display {
-  /* background-color: #E1E2E1; */
   padding: 30px;
   text-shadow: 5px 10px 20px #2D3047; }
 
@@ -47,9 +45,11 @@ footer {
   background-color: transparent;
   line-height: 1.2;
   text-align: center;
-  box-shadow: 5px 10px 20px #2D3047; }
-  .btn:hover {
-    opacity: 0.5; }
+  box-shadow: 5px 10px 20px #2D3047;
+  /* TO DO: resolve active for mobile*/ }
+  @media (hover: hover) {
+    .btn:hover {
+      opacity: 0.5; } }
 
 @media screen and (max-width: 300px) {
   .counter-btn {
