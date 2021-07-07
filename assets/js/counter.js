@@ -28,66 +28,83 @@ function defineStyleElem(elem, styleObj = {}) {
 function defineLayout(num) {
   /* return a div with the defined layout */
 
-  let counter = num;
+  let counter = +num;
 
-  let counterLayout = document.createElement("div");
+  let counterBox = document.createElement("div");
   
   if (isValidCounter(counter)) {
     
-    let counterBox = document.createElement("div");
-
-    let title = document.createElement("p");
-    title.innerHTML = "Counter";
-
-    let increaseBtn = createCustomBtn("+", "increase");
+    let counterDisplay = document.createElement("div");
+    counterDisplay.className = "counter-display";
     
-    let decreaseBtn = createCustomBtn("-", "decrease");
+    let counterNum = document.createElement("p");
+    counterDisplay.className = "counter-num";
+    counterNum.innerHTML = counter;
+    
+    let counterMsg = document.createElement("p");
+    counterMsg.className = "message";
+    counterMsg.hidden = true;
+    
+    counterDisplay.append(counterNum, counterMsg);
 
-    let resetBtn = createCustomBtn("-", "reset");
+    let counterBtn = document.createElement("div");
+    counterBtn.className = "counter-btn";
     
-    let containerBtn = document.createElement("div");
-    containerBtn.append(decreaseBtn, increaseBtn, resetBtn);
-    
-    let counterPara = document.createElement("p");
-    counterPara.innerHTML = +counter;
+    let decreaseBtn = document.createElement("button");
+    decreaseBtn.className = "btn";
+    decreaseBtn.setAttribute("data-action", "decrease");
+    decreaseBtn.insertAdjacentHTML('afterbegin', '<i class="fas fa-minus"></i>');
+
+    let increaseBtn = document.createElement("button");
+    increaseBtn.className = "btn";
+    increaseBtn.setAttribute("data-action", "increase");
+    increaseBtn.insertAdjacentHTML('afterbegin', '<i class="fas fa-plus"></i>');
+
+    let resetBtn = document.createElement("button");
+    resetBtn.className = "btn";
+    resetBtn.setAttribute("data-action", "reset");
+    resetBtn.insertAdjacentHTML('afterbegin', '<i class="fas fa-undo"></i>');
+
+    counterBtn.append(decreaseBtn, increaseBtn, resetBtn);
     
     /* Event Listener with event delegation and behaviour pattern in action */
-    containerBtn.addEventListener("click", (event) => {
-      let action = event.target.dataset.action;
+    // counterBtn.addEventListener("click", (event) => {
+    //   let action = event.target.dataset.action;
 
-      switch(action) {
-        case "decrease":
-          --counter;
-          break;
-        case "increase":
-          ++counter;
-          break;
-        case "reset":
-          counter = num;
-          break;
-      }
+    //   switch(action) {
+    //     case "decrease":
+    //       --counter;
+    //       break;
+    //     case "increase":
+    //       ++counter;
+    //       break;
+    //     case "reset":
+    //       counter = num;
+    //       break;
+    //   }
 
-      if (isValidCounter(counter)) {
-        counterPara.innerHTML = counter;
-      } else {
-        return false;
-      }
+    //   if (isValidCounter(counter)) {
+    //     counterNum.innerHTML = counter;
+    //   } else {
+    //     return false;
+    //   }
 
-    });
+    // });
   
-    counterLayout.append(containerBtn, counterPara);
+    counterBox.append(counterDisplay, counterBtn);
   
   } else {
-    let counterError = document.createElement("p");
-    counterError.innerHTML = `Unable to define layout for counter  "${counter}". It is not a valid number.`;
-    counterLayout.append(counterError);
+    // TO DO
+    // let counterError = document.createElement("p");
+    // counterError.innerHTML = `Unable to define layout for counter  "${counter}". It is not a valid number.`;
+    // counterBox.append(counterError);
   }
 
-  return counterLayout;
+  return counterBox;
 
 }
 
 /* End Layout function */
 
 let counter = 0;
-counterBox.append(defineLayout(counter));
+document.querySelector("main").append(defineLayout(counter));
