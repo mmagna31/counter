@@ -40,7 +40,8 @@ function defineLayout(num) {
 
   /* Event Listener with event delegation and behaviour pattern in action */
   counterBtn.addEventListener("click", (event) => {
-    let action = event.target.dataset.action;
+
+    let action = event.target.closest('button').dataset.action;
 
     switch(action) {
       case "decrease":
@@ -49,13 +50,10 @@ function defineLayout(num) {
       case "increase":
         ++counter;
         break;
-      // case "reset":
-      //   counter = num;
-      //   break;
+      case "reset":
+        counter = num;
+        break;
     }
-
-    console.log(action);
-    console.log(counter);
 
     if (isValidCounter(counter)) {
       counterNum.innerHTML = counter;
