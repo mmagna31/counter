@@ -29,19 +29,6 @@ footer {
     bottom: 0;
 }
 
-/* .counter-box {
-    margin-top: 10%;
-} */
-
-.counter-display {
-    padding: 30px;
-    text-shadow: $shadow;
-}
-
-.message {
-    font-size: 3vw;
-}
-
 .counter-num {
     font-size: 7vw;
     word-break: break-all;
@@ -74,11 +61,3 @@ footer {
     }
 }
 
-// .counter-btn {
-//     @media screen and (max-width: 300px) {
-//         display: flex;
-//         justify-content: center;
-//         align-items: center;
-//         flex-direction: column;
-//     }
-// }
