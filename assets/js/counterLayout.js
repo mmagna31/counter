@@ -1,9 +1,9 @@
-function defineLayout(num) {
+function defineLayout(num = 0) {
 
   /* return a div with the defined layout */
-
-  let counter = bigInt(num);
-  // let counter = +num;
+  
+  const COUNTER_START = bigInt(num)
+  let counter = COUNTER_START;
       
   let counterNum = document.createElement("p");
   counterNum.className = "counter-num";
@@ -31,8 +31,6 @@ function defineLayout(num) {
   /* Event Listener with event delegation and behaviour pattern in action */
   counterBtn.addEventListener("click", (event) => {
 
-    console.log(counter);
-
     let btn = event.target.closest('button');
 
     if (!btn) {
@@ -43,23 +41,17 @@ function defineLayout(num) {
 
     switch(action) {
       case "decrease":
-        console.log("decrease", typeof counter);
-        --counter;
+        counter = counter.subtract(1);
         break;
       case "increase":
-        console.log("increase", counter);
-        ++counter;
+        counter = counter.add(1);
         break;
       case "reset":
-        console.log("in reset", counter);
-        counter = num;
+        counter = COUNTER_START;
         break;
     }
 
-    console.log(counter);
-    // if (isValidCounter(counter)) {
-      counterNum.innerHTML = counter;
-    // } 
+    counterNum.innerHTML = counter;
 
   });
 
@@ -70,5 +62,10 @@ function defineLayout(num) {
 
 }
 
-let counter = 10000000000000000000000000000000000000000000000000000000000000000000000000000; // TO DO: verifica counter iniziale stringa
-document.querySelector("main").append(defineLayout(counter));
+document.querySelector("main").append(defineLayout());
+
+
+// function isValidCounter(counter) {
+//   /* Check if counter is a valid number */
+//   return !isNaN(counter) && isFinite(counter) && counter != null;
+// }
