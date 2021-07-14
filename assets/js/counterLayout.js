@@ -55,12 +55,42 @@ function defineLayout(num = 0) {
 
   });
 
+  /* add style to button on counterBtn */
+  counterBtn.querySelectorAll("button").forEach(
+    (currentValue) => {
+      currentValue.addEventListener("click", () => console.log("----------------", currentValue));
+      
+      currentValue.addEventListener("mouseover", () => {
+        console.log("mouseover!!!", event.target.tagName );
+        currentValue.style.opacity = "0.5";
+      });
+
+      currentValue.addEventListener("mouseout", () => {
+        console.log("mouseout!!!", event.target.tagName );
+        currentValue.style.opacity = "1";
+      });
+
+      currentValue.addEventListener("mousedown", () => {
+        console.log("mousedown!!!", event.target.tagName );
+        currentValue.style.transform = "scale(0.9)";
+        currentValue.style.transition = "0.1s";
+      });
+
+      currentValue.addEventListener("mouseup", () => {
+        console.log("mouseup!!!", event.target.tagName );
+        currentValue.style.transform = "scale(1)";
+        currentValue.style.transition = "0.1s";
+      });
+  });
+
   let counterBox = document.createElement("div");
   counterBox.append(counterNum, counterBtn);
 
   return counterBox;
 
 }
+
+
 
 document.querySelector("main").append(defineLayout());
 
