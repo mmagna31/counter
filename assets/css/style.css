@@ -36,9 +36,3 @@ footer {
   line-height: 1.2;
   text-align: center;
   box-shadow: 5px 10px 20px #2D3047; }
-  @media (hover: hover) {
-    .btn:hover {
-      opacity: 0.5; } }
-  .btn:active {
-    transform: scale(0.9);
-    transition: 0.1s; }
