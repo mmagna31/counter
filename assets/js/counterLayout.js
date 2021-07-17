@@ -32,6 +32,8 @@ function defineLayout(num = 0) {
   counterBtn.addEventListener("click", (event) => {
 
     let btn = event.target.closest('button');
+    console.log("click---",event.target);
+    console.log("click--- btn", btn);
 
     if (!btn) {
       return false;
@@ -58,28 +60,25 @@ function defineLayout(num = 0) {
   /* add style to button on counterBtn */
   counterBtn.querySelectorAll("button").forEach(
     (currentValue) => {
-      currentValue.addEventListener("click", () => console.log("----------------", currentValue));
       
       currentValue.addEventListener("pointerover", () => {
-        console.log("pointerover!!!", event.target.tagName );
         currentValue.style.opacity = "0.5";
       });
 
       currentValue.addEventListener("pointerout", () => {
-        console.log("pointerout!!!", event.target.tagName );
         currentValue.style.opacity = "1";
       });
 
       currentValue.addEventListener("pointerdown", () => {
-        console.log("pointerdown!!!", event.target.tagName );
         currentValue.setPointerCapture(event.pointerId);
-        currentValue.style.transform = "scale(0.2)";
+        // currentValue.style.transform = "scale(0.9)";
+        currentValue.style.backgroundColor = "#2D3047";
         currentValue.style.transition = "0.1s";
+
       });
 
       currentValue.addEventListener("pointerup", () => {
-        console.log("pointerup!!!", event.target.tagName );
-        currentValue.style.transform = "scale(1)";
+        currentValue.style.backgroundColor = "transparent";
         currentValue.style.transition = "0.1s";
       });
   });
@@ -90,8 +89,6 @@ function defineLayout(num = 0) {
   return counterBox;
 
 }
-
-
 
 document.querySelector("main").append(defineLayout());
 
