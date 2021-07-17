@@ -72,7 +72,8 @@ function defineLayout(num = 0) {
 
       currentValue.addEventListener("pointerdown", () => {
         console.log("pointerdown!!!", event.target.tagName );
-        currentValue.style.transform = "scale(0.9)";
+        currentValue.setPointerCapture(event.pointerId);
+        currentValue.style.transform = "scale(0.2)";
         currentValue.style.transition = "0.1s";
       });
 
