@@ -48,6 +48,7 @@ footer {
     line-height: 1.2;
     text-align: center;
     box-shadow: $shadow;
+    touch-action: none;
 
     // @media (hover: hover) {
     //     &:hover {
