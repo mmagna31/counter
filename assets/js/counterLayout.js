@@ -1,4 +1,37 @@
-function defineLayout(num = 0) {
+function btnEffect(btn) {
+  /* Apply proper style based on the proper Pointer events */
+
+  btn.addEventListener("pointerover", () => {
+    btn.style.backgroundColor = "#2D3047";
+  });
+
+  btn.addEventListener("pointerout", () => {
+    btn.style.backgroundColor = "transparent";
+  });
+
+  btn.addEventListener("pointerdown", (event) => {
+    btn.setPointerCapture(event.pointerId);
+    btn.style.opacity = "0.5";
+    btn.style.transition = "0.3s";
+  });
+
+  btn.addEventListener("pointerup", () => {
+    btn.style.opacity = "1";
+    btn.style.transition = "0.3s";
+  });
+
+}
+
+function createCustomBtn(action, codeHtml) {
+  /* Return a button generated with custom action and text inside it*/
+  let btn = document.createElement("button");
+  btn.className = "btn";
+  btn.setAttribute("data-action", action);
+  btn.insertAdjacentHTML('afterbegin', codeHtml);
+  return btn;
+}
+
+function defineLayout(num=0) {
 
   /* return a div with the defined layout */
   
@@ -8,21 +41,11 @@ function defineLayout(num = 0) {
   let counterNum = document.createElement("p");
   counterNum.className = "counter-num";
   counterNum.innerHTML = counter;
-  
-  let decreaseBtn = document.createElement("button");
-  decreaseBtn.className = "btn";
-  decreaseBtn.setAttribute("data-action", "decrease");
-  decreaseBtn.insertAdjacentHTML('afterbegin', '<i class="fas fa-minus"></i>');
 
-  let increaseBtn = document.createElement("button");
-  increaseBtn.className = "btn";
-  increaseBtn.setAttribute("data-action", "increase");
-  increaseBtn.insertAdjacentHTML('afterbegin', '<i class="fas fa-plus"></i>');
-
-  let resetBtn = document.createElement("button");
-  resetBtn.className = "btn";
-  resetBtn.setAttribute("data-action", "reset");
-  resetBtn.insertAdjacentHTML('afterbegin', '<i class="fas fa-undo"></i>');
+  /* Button implementation */
+  let decreaseBtn = createCustomBtn('decrease', '<i class="fas fa-minus"></i>');
+  let increaseBtn = createCustomBtn('increase', '<i class="fas fa-plus"></i>');
+  let resetBtn = createCustomBtn('reset', '<i class="fas fa-undo"></i>');
 
   let counterBtn = document.createElement("div");
   counterBtn.className = "counter-btn";
@@ -32,8 +55,6 @@ function defineLayout(num = 0) {
   counterBtn.addEventListener("click", (event) => {
 
     let btn = event.target.closest('button');
-    console.log("click---",event.target);
-    console.log("click--- btn", btn);
 
     if (!btn) {
       return false;
@@ -57,31 +78,10 @@ function defineLayout(num = 0) {
 
   });
 
-  /* add style to button on counterBtn */
+  /* Adding style effect to all buttons on counterBtn */
   counterBtn.querySelectorAll("button").forEach(
-    (currentValue) => {
-      
-      currentValue.addEventListener("pointerover", () => {
-        currentValue.style.opacity = "0.5";
-      });
-
-      currentValue.addEventListener("pointerout", () => {
-        currentValue.style.opacity = "1";
-      });
-
-      currentValue.addEventListener("pointerdown", () => {
-        currentValue.setPointerCapture(event.pointerId);
-        // currentValue.style.transform = "scale(0.9)";
-        currentValue.style.backgroundColor = "#2D3047";
-        currentValue.style.transition = "0.1s";
-
-      });
-
-      currentValue.addEventListener("pointerup", () => {
-        currentValue.style.backgroundColor = "transparent";
-        currentValue.style.transition = "0.1s";
-      });
-  });
+    (currentValue) => btnEffect(currentValue)
+  );
 
   let counterBox = document.createElement("div");
   counterBox.append(counterNum, counterBtn);
@@ -91,9 +91,3 @@ function defineLayout(num = 0) {
 }
 
 document.querySelector("main").append(defineLayout());
-
-
-// function isValidCounter(counter) {
-//   /* Check if counter is a valid number */
-//   return !isNaN(counter) && isFinite(counter) && counter != null;
-// }
