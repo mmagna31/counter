@@ -1,36 +1,3 @@
-function btnEffect(btn) {
-  /* Apply proper style based on the proper Pointer events */
-
-  btn.addEventListener("pointerover", () => {
-    btn.style.backgroundColor = "#2D3047";
-  });
-
-  btn.addEventListener("pointerout", () => {
-    btn.style.backgroundColor = "transparent";
-  });
-
-  btn.addEventListener("pointerdown", (event) => {
-    btn.setPointerCapture(event.pointerId);
-    btn.style.opacity = "0.5";
-    btn.style.transition = "0.3s";
-  });
-
-  btn.addEventListener("pointerup", () => {
-    btn.style.opacity = "1";
-    btn.style.transition = "0.3s";
-  });
-
-}
-
-function createCustomBtn(action, codeHtml) {
-  /* Return a button generated with custom action and text inside it*/
-  let btn = document.createElement("button");
-  btn.className = "btn";
-  btn.setAttribute("data-action", action);
-  btn.insertAdjacentHTML('afterbegin', codeHtml);
-  return btn;
-}
-
 function defineLayout(num=0) {
 
   /* return a div with the defined layout */
@@ -78,9 +45,26 @@ function defineLayout(num=0) {
 
   });
 
+  let btnEffectStyle = {
+    pointerover : {
+      backgroundColor: "#2D3047"
+    },
+    pointerout : {
+      backgroundColor: "transparent"
+    },
+    pointerdown : {
+      opacity: "0.5",
+      transition: "0.3s"
+    },
+    pointerup : {
+      opacity: "1",
+      transition: "0.3s"
+    },
+  }
+
   /* Adding style effect to all buttons on counterBtn */
   counterBtn.querySelectorAll("button").forEach(
-    (currentValue) => btnEffect(currentValue)
+    (currentValue) => btnEffect(currentValue, btnEffectStyle)
   );
 
   let counterBox = document.createElement("div");
