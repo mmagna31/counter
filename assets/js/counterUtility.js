@@ -31,7 +31,7 @@ function btnEffect(btn, btnEffectStyle = {}) {
 }
 
 function createCustomBtn(action, codeHtml) {
-  /* Return a button generated with custom action and text inside it*/
+  /* Return a button generated with custom action and text inside it */
   let btn = document.createElement("button");
   btn.className = "btn";
   btn.setAttribute("data-action", action);

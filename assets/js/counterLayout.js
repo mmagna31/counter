@@ -74,4 +74,3 @@ function defineLayout(num=0) {
 
 }
 
-document.querySelector("main").append(defineLayout());

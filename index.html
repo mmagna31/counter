@@ -14,20 +14,23 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+  <!-- External script to work with big number -->
+  <script src="https://peterolson.github.io/BigInteger.js/BigInteger.min.js"></script>
+  <script src="assets/js/counterUtility.js"></script>
+  <script src="assets/js/counterLayout.js"></script>
 </head>
 <body>
   <header>
     <p>Welcome to my counter!<br>
       Use &plus;/&minus; buttons to increase/decrease the counter.</p>
   </header>
+
   <main/>
+  <script>document.querySelector("main").append(defineLayout());</script>
+
   <footer>
     <p>mmagna31 2021</p>
   </footer>
-
-  <!-- External script to work with big number -->
-  <script src="https://peterolson.github.io/BigInteger.js/BigInteger.min.js"></script>
-  <script src="assets/js/counterUtility.js"></script>
-  <script src="assets/js/counterLayout.js"></script>
 </body>
 </html>
