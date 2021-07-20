@@ -1,6 +1,6 @@
 ## Counter
 
-A counter to integrate in your HTML page. <a href="https://mmagna31-counter.netlify.app/" target="_blank">View Demo</a>
+A counter to integrate in your HTML page. <a href="https://mmagna31-counter.netlify.app/">View Demo</a>
 
 
 ## About The Project
