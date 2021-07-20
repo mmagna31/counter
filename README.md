@@ -1,21 +1,17 @@
-<p align="center">
-  <h3 align="center">Counter</h3>
+## Counter
 
-  <p align="center">
-    A counter to integrate in your HTML page.
-    <br />
-    <a href="https://mmagna31-counter.netlify.app/">View Demo</a>
-    ·
-  </p>
-</p>
+A counter to integrate in your HTML page. <a href="https://mmagna31-counter.netlify.app/">View Demo</a>
+
 
 ## About The Project
 
 The idea behind this project is to implement a counter written in javascript which can be integrated into an html page.
 
+
 ## Getting Started
 
 To get a local copy up and running follow these simple steps.
+
 
 ### Prerequisites
 
@@ -23,6 +19,7 @@ To get a local copy up and running follow these simple steps.
   ```sh
   npm install npm@latest -g
   ```
+
 
 ### Installation
 
@@ -35,13 +32,16 @@ To get a local copy up and running follow these simple steps.
    npm install
    ```
 
+
 ## Usage
 
 Clone the project or download it and open the index.html file with your browser to see the counter in action.
 
+
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
+
 
 ## Acknowledgements
 
