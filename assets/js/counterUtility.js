@@ -1,7 +1,7 @@
 /* Factory function to set buttons style */
 
 function setBtnStyle(styleObject = {}) {
-  /* impostare lo stile del bottone a seconda del evento */
+  /*  */
   return (event) => {
     if (event.type in styleObject) {
       for (let [key, value] of Object.entries(styleObject[event.type])) {
@@ -12,7 +12,7 @@ function setBtnStyle(styleObject = {}) {
 }
 
 function btnEffect(btn, btnEffectStyle = {}) {
-  /* Apply proper style based on the proper Pointer events */
+  /* Apply style based on the proper Pointer events */
 
   /* Using factory function in order to apply style to buttons according to button event*/
   let setEffect = setBtnStyle(btnEffectStyle);

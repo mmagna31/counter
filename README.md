@@ -43,6 +43,11 @@ Clone the project or download it and open the index.html file with your browser 
 Distributed under the MIT License. See `LICENSE` for more information.
 
 
+## Know issues
+
+Internet Explorer is not supported
+
+
 ## Acknowledgements
 
 * [Peter Olson's BigInteger.js project](https://github.com/peterolson/BigInteger.js)

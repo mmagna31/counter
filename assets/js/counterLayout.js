@@ -1,5 +1,4 @@
 function defineLayout(num=0) {
-
   /* return a div with the defined layout */
   
   const COUNTER_START = bigInt(num)
@@ -18,32 +17,8 @@ function defineLayout(num=0) {
   counterBtn.className = "counter-btn";
   counterBtn.append(decreaseBtn, increaseBtn, resetBtn);
 
-  /* Event Listener with event delegation and behaviour pattern in action */
-  counterBtn.addEventListener("click", (event) => {
-
-    let btn = event.target.closest('button');
-
-    if (!btn) {
-      return false;
-    }
-
-    let action = btn.dataset.action;
-
-    switch(action) {
-      case "decrease":
-        counter = counter.subtract(1);
-        break;
-      case "increase":
-        counter = counter.add(1);
-        break;
-      case "reset":
-        counter = COUNTER_START;
-        break;
-    }
-
-    counterNum.innerHTML = counter;
-
-  });
+  let counterBox = document.createElement("div");
+  counterBox.append(counterNum, counterBtn);
 
   let btnEffectStyle = {
     pointerover : {
@@ -62,15 +37,37 @@ function defineLayout(num=0) {
     },
   }
 
+  /* Assigning EventListen to Button */
+  
   /* Adding style effect to all buttons on counterBtn */
   counterBtn.querySelectorAll("button").forEach(
     (currentValue) => btnEffect(currentValue, btnEffectStyle)
   );
 
-  let counterBox = document.createElement("div");
-  counterBox.append(counterNum, counterBtn);
+  /* Event Listener with event delegation and behaviour pattern in action */
+  counterBtn.addEventListener("click", (event) => {
+
+    let btn = event.target.closest('button');
+
+    if (!btn) {
+      return false;
+    }
+
+    switch(btn.dataset.action) {
+      case "decrease":
+        counter = counter.subtract(1);
+        break;
+      case "increase":
+        counter = counter.add(1);
+        break;
+      case "reset":
+        counter = COUNTER_START;
+        break;
+    }
+
+    counterNum.innerHTML = counter;
+  });
 
   return counterBox;
-
 }
 
