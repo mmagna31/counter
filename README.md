@@ -43,7 +43,7 @@ Clone the project or download it and open the index.html file with your browser 
 Distributed under the MIT License. See `LICENSE` for more information.
 
 
-## Know issues
+## Known issues
 
 Internet Explorer is not supported
 

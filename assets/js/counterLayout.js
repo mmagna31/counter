@@ -6,7 +6,7 @@ function defineLayout(num=0) {
       
   let counterNum = document.createElement("p");
   counterNum.className = "counter-num";
-  counterNum.innerHTML = counter;
+  counterNum.innerHTML = counter; // initial counter value 
 
   /* Button implementation */
   let decreaseBtn = createCustomBtn('decrease', '<i class="fas fa-minus"></i>');
@@ -20,32 +20,36 @@ function defineLayout(num=0) {
   let counterBox = document.createElement("div");
   counterBox.append(counterNum, counterBtn);
 
-  let btnEffectStyle = {
-    pointerover : {
-      backgroundColor: "#2D3047"
-    },
-    pointerout : {
-      backgroundColor: "transparent"
-    },
-    pointerdown : {
-      opacity: "0.5",
-      transition: "0.3s"
-    },
-    pointerup : {
-      opacity: "1",
-      transition: "0.3s"
-    },
-  }
-
-  /* Assigning EventListen to Button */
-  
-  /* Adding style effect to all buttons on counterBtn */
+  /* Event Listener: Adding over and out effects to all buttons on counterBtn */
   counterBtn.querySelectorAll("button").forEach(
-    (currentValue) => btnEffect(currentValue, btnEffectStyle)
+    (currentValue) => {
+
+      let currentStyle = getComputedStyle(currentValue);
+
+      /* object to define the style of the button according to pointer event */
+      let btnEffectStyle = {
+        pointerover : {
+          backgroundColor: "#2D3047"
+        },
+        pointerout : {
+          backgroundColor: currentStyle.backgroundColor
+        },
+        pointerdown : {
+          opacity: "0.5",
+          transition: "0.3s"
+        },
+        pointerup : {
+          opacity: "1",
+          transition: "0.3s"
+        },
+      }
+
+      btnEffect(currentValue, btnEffectStyle);
+    }
   );
 
-  /* Event Listener with event delegation and behaviour pattern in action */
-  counterBtn.addEventListener("click", (event) => {
+  /* function for Event listener with event delegation and behaviour pattern in action */
+  function manageCounter(event) {
 
     let btn = event.target.closest('button');
 
@@ -66,7 +70,10 @@ function defineLayout(num=0) {
     }
 
     counterNum.innerHTML = counter;
-  });
+  }
+
+ 
+  counterBtn.addEventListener("click", manageCounter);
 
   return counterBox;
 }
